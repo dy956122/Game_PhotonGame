@@ -65,8 +65,8 @@ namespace Classlin
         /// <param name="roomName"></param>
         public void CreateRoom(string roomName)    // 可打成 public void CreateRoom(string roomName,int maxPlayers)，這樣的話，可以在最後端加入 人數限制，並且在另一邊程式被呼叫輸入值
         {
-            // 進入房間 最多4人,是否會出現在大廳列表,是否可以被加入
-            RoomOptions options = new RoomOptions { MaxPlayers = 4, IsVisible = true, IsOpen = true };
+            // 進入房間 最多2人,是否會出現在大廳列表,是否可以被加入
+            RoomOptions options = new RoomOptions { MaxPlayers = 2, IsVisible = true, IsOpen = true };
 
 
             PhotonNetwork.CreateRoom(roomName, options);     // 創建房間(房間名, 人數)
@@ -117,7 +117,7 @@ namespace Classlin
             base.OnJoinedRoom();
 
             print("Join Room Success!!");
-            PhotonNetwork.LoadLevel("TutorLevel1");     // 開啟新場景房間，不需要使用到ScenesManager
+            PhotonNetwork.LoadLevel("Level1");     // 開啟新場景房間，不需要使用到ScenesManager
         }
         #endregion Pun Bahavior
     }
