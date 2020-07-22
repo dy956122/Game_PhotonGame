@@ -66,7 +66,7 @@ namespace Classlin
         public void CreateRoom(string roomName)    // 可打成 public void CreateRoom(string roomName,int maxPlayers)，這樣的話，可以在最後端加入 人數限制，並且在另一邊程式被呼叫輸入值
         {
             // 進入房間 最多2人,是否會出現在大廳列表,是否可以被加入
-            RoomOptions options = new RoomOptions { MaxPlayers = 2, IsVisible = true, IsOpen = true };
+            RoomOptions options = new RoomOptions { MaxPlayers = 4, IsVisible = true, IsOpen = true };
 
 
             PhotonNetwork.CreateRoom(roomName, options);     // 創建房間(房間名, 人數)

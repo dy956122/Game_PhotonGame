@@ -17,7 +17,7 @@ public class TutorSceneManager : MonoBehaviour, IOnEventCallback
 
     void Start()
     {
-        PhotonNetwork.Instantiate("TutorPlayer", Vector3.up * 3, Quaternion.identity);
+        PhotonNetwork.Instantiate("NoMouthIdle", Vector3.up * 3, Quaternion.identity);
 
 
     }
