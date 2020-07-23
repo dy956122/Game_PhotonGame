@@ -9,6 +9,9 @@ public class TutorPlayerProperty : MonoBehaviour, IPunObservable // IPunObservab
     PhotonView pv;
     TutorPlayerController myController;
 
+    public GameObject prop;
+    public GameObject propCreatePoint;
+
 
     public Animator animator;
 
@@ -57,6 +60,7 @@ public class TutorPlayerProperty : MonoBehaviour, IPunObservable // IPunObservab
     private void Update()
     {
         playerName.transform.LookAt(camPos);
+        // InvokeRepeating("Throw",0f,2f);
     }
 
     public void Movemont(float x, float y)
@@ -67,20 +71,28 @@ public class TutorPlayerProperty : MonoBehaviour, IPunObservable // IPunObservab
     }
 
     // 註冊到 Controller 裡面
-    public void Motion(int index)
+    public void Motion(bool att)
     {
         // print("myIndex" + index);
 
         // RPC ( 執行功能名稱,房主,房號) ,順序很重要,不能搞錯
-        pv.RPC("PoseChange",RpcTarget.All,index);
+        // pv.RPC("PoseChange", RpcTarget.All, index); 老師寫的
+        pv.RPC("Throw", RpcTarget.All, true);
     }
 
-    [PunRPC]        // 適合 一對一的事件(角色對道具)
-    public void PoseChange(int index)
+
+    /*
+    [PunRPC]       // 適合 一對一的事件(角色對道具)
+    public void PoseChange()  // public void PoseChange(int index) 是原本的
     {
+        if (Input.GetMouseButton(0))
+        {
+            Instantiate(prop);
+            // animator.SetBool("Att", true);
+        }
         animator.SetInteger("Index", index);
         animator.SetBool("Pose", true);
-    }
+    }*/
 
     // 此段 要搭配上方 IPunObservable 的實作介面，要讓其他連線玩家的動畫可以同步出現
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -93,5 +105,12 @@ public class TutorPlayerProperty : MonoBehaviour, IPunObservable // IPunObservab
         {
             speed = (float)stream.ReceiveNext();    // 將 obj 檔案 強制轉換型別成 float
         }
+    }
+
+    [PunRPC]
+    public void Throw()
+    {
+        Instantiate(prop, propCreatePoint.transform.position, propCreatePoint.transform.rotation);
+        //GetComponent<Animator>().SetBool("Att", true);
     }
 }

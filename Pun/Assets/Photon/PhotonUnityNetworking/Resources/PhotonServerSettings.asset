@@ -27,7 +27,7 @@ MonoBehaviour:
     AuthMode: 0
     EnableLobbyStatistics: 0
     NetworkLogging: 1
-  DevRegion: 
+  DevRegion: jp
   PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
@@ -41,6 +41,11 @@ MonoBehaviour:
   - Fire
   - PoseChange
   - RespawnSpaceship
+  - Throw
+  - Track
+  - OnTriggerEnter
+  - OnTriggerExit
+  - CreateMonster
   DisableAutoOpenWizard: 1
   ShowSettings: 1
-  DevRegionSetOnce: 0
+  DevRegionSetOnce: 1

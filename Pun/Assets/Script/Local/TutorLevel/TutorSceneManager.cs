@@ -11,34 +11,45 @@ public class TutorSceneManager : MonoBehaviour, IOnEventCallback
     // 創建倒數計時器的文字
     public Text timeCounter;
 
-    public int timer = 180;
+    public int timer = 60;
     bool startTime = false;
+
+    public GameObject[] monster;
+    public GameObject[] createMonsterCube;
+    public float createTime;
+    public float maxNum;
+
+    public Transform target;
 
 
     void Start()
     {
         PhotonNetwork.Instantiate("NoMouthIdle", Vector3.up * 3, Quaternion.identity);
-
-
+        InvokeRepeating("CreateMonster", 2, 2);
     }
 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (PhotonNetwork.IsMasterClient && !startTime)
+        {
+            StartCoroutine(Timer());
+        }
+
+
+        /*if (Input.GetKeyDown(KeyCode.F1))
         {
             // 只有房主可以倒數計時
             if (PhotonNetwork.IsMasterClient && !startTime)
             {
                 StartCoroutine(Timer());
             }
-        }
+        }*/
     }
 
     private void OnEnable()
     {
         PhotonNetwork.AddCallbackTarget(this);
-
     }
 
     private void OnDisable()
@@ -50,7 +61,7 @@ public class TutorSceneManager : MonoBehaviour, IOnEventCallback
     {
         startTime = true;
 
-        // Time.time 是 Unity 遊戲內部的時間`
+        // Time.time 是 Unity 遊戲內部的時間
         // Time.timeScale = 0.1f; 可以加速也可以減速
         // realtime 則是以現實世界的時間為基準，不會受到 速度影響
         // 如果是用 for 迴圈，然後在迴圈內放入 new 相關的單字，會超級耗效能
@@ -77,6 +88,12 @@ public class TutorSceneManager : MonoBehaviour, IOnEventCallback
 
         PhotonNetwork.RaiseEvent(eventCode2, obj2, eventOption2, SendOptions.SendReliable);
 
+
+        byte eventCode3 = 3;
+        object[] obj3 = new object[] { "Win" };
+
+        RaiseEventOptions eventOption3 = new RaiseEventOptions { Receivers = ReceiverGroup.All };
+        PhotonNetwork.RaiseEvent(eventCode3, obj3, eventOption3, SendOptions.SendReliable);
     }
 
 
@@ -98,5 +115,18 @@ public class TutorSceneManager : MonoBehaviour, IOnEventCallback
                     break;
                 }
         }
+    }
+
+    [PunRPC]
+    public void CreateMonster()
+    {
+        Vector3 MaxValue = createMonsterCube[Random.Range(0, createMonsterCube.Length)].GetComponent<Collider>().bounds.max;
+        Vector3 MinValue = createMonsterCube[Random.Range(0, createMonsterCube.Length)].GetComponent<Collider>().bounds.min;
+        Vector3 RandomPos = new Vector3(Random.Range(MinValue.x, MaxValue.x), MinValue.y, Random.Range(MinValue.z, MaxValue.z));
+        
+        // 抓取怪物產生的腳本，然後讓怪物往 指定座標點 移動
+        Monster monsterA =  Instantiate(monster[Random.Range(0, monster.Length)], RandomPos, Quaternion.identity).GetComponent<Monster>();
+        monsterA.target = target;
+        // transform.LookAt(monsterA.target); 之後再來處理
     }
 }

@@ -14,6 +14,8 @@ public class TutorPlayerController : MonoBehaviour
 
     public float speed = 3;
 
+    
+
     void Update()
     {
         float x, y;
@@ -42,7 +44,16 @@ public class TutorPlayerController : MonoBehaviour
             }
             transform.localEulerAngles = new Vector3(0, RotY, 0);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+
+        // 移動邊界範圍 限制
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -1.5f, 1.5f), transform.position.y, Mathf.Clamp(transform.position.z, -1.5f, 1.5f));
+
+        if (Input.GetMouseButton(0))
+        {
+            myTrigger(1);
+        }
+
+        /*if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             myTrigger(1);
         }
@@ -53,7 +64,6 @@ public class TutorPlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             myTrigger(3);
-        }
-
+        }*/
     }
 }
