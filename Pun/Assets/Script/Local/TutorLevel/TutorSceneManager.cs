@@ -16,16 +16,23 @@ public class TutorSceneManager : MonoBehaviour, IOnEventCallback
 
     public GameObject[] monster;
     public GameObject[] createMonsterCube;
-    public float createTime;
-    public float maxNum;
+
+    [Range(1, 10)]
+    public float createTime = 1f;
+    [Range(1, 10)]
+    public float RepeatTime = 1f;
+    // public float maxNum;
 
     public Transform target;
+
+    public delegate void MonsterEvent();
+    public MonsterEvent monsterEvent;
 
 
     void Start()
     {
         PhotonNetwork.Instantiate("NoMouthIdle", Vector3.up * 3, Quaternion.identity);
-        InvokeRepeating("CreateMonster", 2, 2);
+        InvokeRepeating("CreateMonster", createTime, RepeatTime);
     }
 
 
@@ -72,7 +79,7 @@ public class TutorSceneManager : MonoBehaviour, IOnEventCallback
             timer--;
             timeCounter.text = timer.ToString();
 
-
+            // 預設狀態 1 : 開啟時間
             byte eventCode = 1;
             object[] obj = new object[] { timer };      // obj類型的陣列可以包任何東西,但是取出來要強制型別轉換
 
@@ -81,6 +88,7 @@ public class TutorSceneManager : MonoBehaviour, IOnEventCallback
             PhotonNetwork.RaiseEvent(eventCode, obj, eventOption, SendOptions.SendReliable);
         }
 
+        // 預設狀態 2 : 失敗
         byte eventCode2 = 2;
         object[] obj2 = new object[] { "GameOver" };      // obj類型的陣列可以包任何東西,但是取出來要強制型別轉換
 
@@ -88,7 +96,7 @@ public class TutorSceneManager : MonoBehaviour, IOnEventCallback
 
         PhotonNetwork.RaiseEvent(eventCode2, obj2, eventOption2, SendOptions.SendReliable);
 
-
+        // 預設狀態 3 : 勝利
         byte eventCode3 = 3;
         object[] obj3 = new object[] { "Win" };
 
@@ -114,6 +122,12 @@ public class TutorSceneManager : MonoBehaviour, IOnEventCallback
                     timeCounter.text = data[0].ToString();
                     break;
                 }
+            case 3:
+                {       // print("yes"); // 測試每秒是否有收到訊號
+                    object[] data = (object[])photonEvent.CustomData;
+                    timeCounter.text = data[0].ToString();
+                    break;
+                }
         }
     }
 
@@ -123,10 +137,12 @@ public class TutorSceneManager : MonoBehaviour, IOnEventCallback
         Vector3 MaxValue = createMonsterCube[Random.Range(0, createMonsterCube.Length)].GetComponent<Collider>().bounds.max;
         Vector3 MinValue = createMonsterCube[Random.Range(0, createMonsterCube.Length)].GetComponent<Collider>().bounds.min;
         Vector3 RandomPos = new Vector3(Random.Range(MinValue.x, MaxValue.x), MinValue.y, Random.Range(MinValue.z, MaxValue.z));
-        
+
         // 抓取怪物產生的腳本，然後讓怪物往 指定座標點 移動
-        Monster monsterA =  Instantiate(monster[Random.Range(0, monster.Length)], RandomPos, Quaternion.identity).GetComponent<Monster>();
+        Monster monsterA = Instantiate(monster[Random.Range(0, monster.Length)], RandomPos, Quaternion.identity).GetComponent<Monster>();
         monsterA.target = target;
-        // transform.LookAt(monsterA.target); 之後再來處理
+        // monster[Random.Range(0, monster.Length)].transform.LookAt(monsterA.target); // 之後再來處理
     }
+
+
 }

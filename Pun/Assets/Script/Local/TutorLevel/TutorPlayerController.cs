@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 
 using UnityEngine;
+using Photon.Pun;                               // 此段為後來追加
+using System.Net.NetworkInformation;            // 此段為後來追加
 
-public class TutorPlayerController : MonoBehaviour
+public class TutorPlayerController : MonoBehaviour, IPunObservable  // IPunObservable為後來追加
 {
     // 委任：類似代辦事項(清單)，丟進去之後，會一個一個執行
     public delegate void Axis(float x, float y);
     public Axis myAxis;
 
-    public delegate void Trigger(int index);
+    public delegate void Trigger();
     public Trigger myTrigger;
 
     public float speed = 3;
@@ -48,9 +50,9 @@ public class TutorPlayerController : MonoBehaviour
         // 移動邊界範圍 限制
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -1.5f, 1.5f), transform.position.y, Mathf.Clamp(transform.position.z, -1.5f, 1.5f));
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            myTrigger(1);
+            myTrigger();
         }
 
         /*if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -65,5 +67,18 @@ public class TutorPlayerController : MonoBehaviour
         {
             myTrigger(3);
         }*/
+    }
+
+    // 此段為後來追加
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(speed);
+        }
+        else
+        {
+            speed = (float)stream.ReceiveNext();
+        }
     }
 }

@@ -27,25 +27,22 @@ MonoBehaviour:
     AuthMode: 0
     EnableLobbyStatistics: 0
     NetworkLogging: 1
-  DevRegion: jp
+  DevRegion: 
   PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
-  - ChangeColour
   - ClickRpc
   - DestroyRpc
   - DestroySpaceship
-  - DoSomthing
   - Fire
-  - PoseChange
   - RespawnSpaceship
+  - ChangeColour
+  - CreateMonster
+  - DoSomthing
   - Throw
   - Track
-  - OnTriggerEnter
-  - OnTriggerExit
-  - CreateMonster
   DisableAutoOpenWizard: 1
   ShowSettings: 1
-  DevRegionSetOnce: 1
+  DevRegionSetOnce: 0

@@ -60,7 +60,6 @@ public class TutorPlayerProperty : MonoBehaviour, IPunObservable // IPunObservab
     private void Update()
     {
         playerName.transform.LookAt(camPos);
-        // InvokeRepeating("Throw",0f,2f);
     }
 
     public void Movemont(float x, float y)
@@ -71,13 +70,13 @@ public class TutorPlayerProperty : MonoBehaviour, IPunObservable // IPunObservab
     }
 
     // 註冊到 Controller 裡面
-    public void Motion(bool att)
+    public void Motion()
     {
         // print("myIndex" + index);
 
         // RPC ( 執行功能名稱,房主,房號) ,順序很重要,不能搞錯
         // pv.RPC("PoseChange", RpcTarget.All, index); 老師寫的
-        pv.RPC("Throw", RpcTarget.All, true);
+        pv.RPC("Throw", RpcTarget.All);
     }
 
 

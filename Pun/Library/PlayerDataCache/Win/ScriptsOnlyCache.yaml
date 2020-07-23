@@ -49,10 +49,9 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -117,13 +116,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12052}
     - Class: 114
-      Script: {instanceID: 12438}
+      Script: {instanceID: 12440}
     - Class: 114
-      Script: {instanceID: 12528}
+      Script: {instanceID: 12530}
     - Class: 114
-      Script: {instanceID: 13264}
+      Script: {instanceID: 13266}
     - Class: 114
-      Script: {instanceID: 13750}
+      Script: {instanceID: 13752}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -210,69 +209,69 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12052}
     - Class: 114
-      Script: {instanceID: 12136}
+      Script: {instanceID: 12082}
     - Class: 114
-      Script: {instanceID: 12246}
+      Script: {instanceID: 12138}
     - Class: 114
-      Script: {instanceID: 12286}
+      Script: {instanceID: 12248}
     - Class: 114
-      Script: {instanceID: 12378}
+      Script: {instanceID: 12288}
     - Class: 114
-      Script: {instanceID: 12434}
+      Script: {instanceID: 12380}
     - Class: 114
-      Script: {instanceID: 12438}
+      Script: {instanceID: 12436}
     - Class: 114
-      Script: {instanceID: 12448}
+      Script: {instanceID: 12440}
     - Class: 114
-      Script: {instanceID: 12598}
+      Script: {instanceID: 12450}
     - Class: 114
-      Script: {instanceID: 12658}
+      Script: {instanceID: 12600}
     - Class: 114
-      Script: {instanceID: 12674}
+      Script: {instanceID: 12660}
     - Class: 114
-      Script: {instanceID: 12684}
+      Script: {instanceID: 12676}
     - Class: 114
-      Script: {instanceID: 12732}
+      Script: {instanceID: 12686}
     - Class: 114
-      Script: {instanceID: 12740}
+      Script: {instanceID: 12734}
     - Class: 114
-      Script: {instanceID: 12828}
+      Script: {instanceID: 12742}
     - Class: 114
-      Script: {instanceID: 12836}
+      Script: {instanceID: 12830}
     - Class: 114
-      Script: {instanceID: 12850}
+      Script: {instanceID: 12838}
     - Class: 114
-      Script: {instanceID: 13086}
+      Script: {instanceID: 12852}
     - Class: 114
       Script: {instanceID: 13088}
     - Class: 114
-      Script: {instanceID: 13108}
+      Script: {instanceID: 13090}
     - Class: 114
-      Script: {instanceID: 13116}
+      Script: {instanceID: 13110}
     - Class: 114
-      Script: {instanceID: 13264}
+      Script: {instanceID: 13118}
     - Class: 114
-      Script: {instanceID: 13308}
+      Script: {instanceID: 13266}
     - Class: 114
-      Script: {instanceID: 13334}
+      Script: {instanceID: 13310}
     - Class: 114
-      Script: {instanceID: 13448}
+      Script: {instanceID: 13336}
     - Class: 114
-      Script: {instanceID: 13462}
+      Script: {instanceID: 13450}
     - Class: 114
-      Script: {instanceID: 13510}
+      Script: {instanceID: 13464}
     - Class: 114
-      Script: {instanceID: 13636}
+      Script: {instanceID: 13512}
     - Class: 114
-      Script: {instanceID: 13652}
+      Script: {instanceID: 13638}
     - Class: 114
-      Script: {instanceID: 13750}
+      Script: {instanceID: 13654}
     - Class: 114
-      Script: {instanceID: 13780}
+      Script: {instanceID: 13752}
     - Class: 114
-      Script: {instanceID: 13788}
+      Script: {instanceID: 13782}
     - Class: 114
-      Script: {instanceID: 41904}
+      Script: {instanceID: 13790}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -838,6 +837,12 @@ ScriptsOnlyBuild:
     className: SceneManager
   - hash:
       serializedVersion: 2
+      Hash: 436aeac30b0de2838946d5de1f6dbdab
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Prop
+  - hash:
+      serializedVersion: 2
       Hash: 117e94af12d2e42e9e17b73f2602978e
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit.Forms
@@ -1150,7 +1155,7 @@ ScriptsOnlyBuild:
     className: OnClickDestroy
   - hash:
       serializedVersion: 2
-      Hash: 6f65d70ac7001b9007ea7ebe459d3319
+      Hash: a4c04037312522f9f7ae883aa4580b13
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TutorSceneManager
@@ -1964,14 +1969,8 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 436aeac30b0de2838946d5de1f6dbdab
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Prop
   platform: 5
   scenePathNames:
   - Assets/Scenes/Tutor/TutorMain.unity
   - Assets/Scenes/Tutor/Level1.unity
-  playerPath: C:/Users/409-01/Desktop/LIN/Game_PhotonGame/PunGameOutput/PunDEMO.exe
+  playerPath: D:/Unity_project/Game_PhotonGame/PunGameOutput/PunDEMO.exe
