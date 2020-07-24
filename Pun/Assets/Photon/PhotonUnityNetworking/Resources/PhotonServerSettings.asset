@@ -15,7 +15,7 @@ MonoBehaviour:
   AppSettings:
     AppIdRealtime: 376af83e-e1ca-457a-9b67-6509669aa6d0
     AppIdChat: 
-    AppIdVoice: 3b6b058f-709b-4f53-ae3b-9598420983ac
+    AppIdVoice: 376af83e-e1ca-457a-9b67-6509669aa6d0
     AppVersion: 
     UseNameServer: 1
     FixedRegion: 
@@ -27,22 +27,23 @@ MonoBehaviour:
     AuthMode: 0
     EnableLobbyStatistics: 0
     NetworkLogging: 1
-  DevRegion: 
+  DevRegion: jp
   PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - ChangeColour
   - ClickRpc
+  - CreateMonster
   - DestroyRpc
   - DestroySpaceship
+  - DoSomthing
   - Fire
   - RespawnSpaceship
-  - ChangeColour
-  - CreateMonster
-  - DoSomthing
   - Throw
   - Track
+  - Movemont
   DisableAutoOpenWizard: 1
   ShowSettings: 1
-  DevRegionSetOnce: 0
+  DevRegionSetOnce: 1
